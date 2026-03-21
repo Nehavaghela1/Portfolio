@@ -1,0 +1,56 @@
+/* Custom Cursor Styles */
+body {
+  cursor: none;
+}
+
+a, button, input, select, textarea, .skill-pill, .cert-card, .planet-content {
+  cursor: none !important;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-teal, #14b8a6);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-glow {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.1s ease-out;
+}
+
+.custom-cursor-dot.hover {
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-pink, #ec4899);
+}
+
+.custom-cursor-glow.hover {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.4) 0%, transparent 70%);
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  a, button, input, select, textarea, .skill-pill, .cert-card, .planet-content {
+    cursor: pointer !important;
+  }
+  .custom-cursor-dot, .custom-cursor-glow {
+    display: none;
+  }
+}

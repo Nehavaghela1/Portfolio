@@ -1,0 +1,558 @@
+.about-compact {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.bento-item {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.bento-item:hover::before {
+  transform: translateX(100%);
+}
+
+.bento-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bento-about { grid-column: span 2; }
+.bento-edu { grid-column: span 1; }
+.bento-tech { grid-column: span 2; }
+.bento-soft { grid-column: span 1; }
+
+.bento-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bento-icon {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-sizing: content-box;
+}
+
+.accent-teal { color: var(--accent-teal); }
+.accent-purple { color: var(--accent-purple); }
+.accent-pink { color: var(--accent-pink); }
+
+.bento-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bento-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* About Content Visuals */
+.about-content-visual {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.bento-text {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.highlight-text {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: rgba(0, 242, 254, 0.1);
+  padding: 0 0.4rem;
+  border-radius: 4px;
+}
+
+.tech-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
+}
+
+.stat-box {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-teal);
+}
+
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--accent-teal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.4rem;
+}
+
+/* Education Visuals */
+.edu-visual-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.edu-visual-card {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.edu-visual-card:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateX(5px);
+}
+
+.edu-icon-wrap {
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--accent-purple);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-details strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.edu-details p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.edu-year {
+  color: var(--accent-teal);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+/* Solar System Orbital Grid */
+.solar-system-wrap {
+  position: relative;
+  width: 100%;
+  height: 380px; /* Tall enough to house the orbit */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, transparent 60%);
+  border-radius: 20px;
+  overflow: visible;
+  margin-top: 1rem;
+}
+
+.center-core {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 0 30px rgba(20, 184, 166, 0.4);
+  animation: pulse-core 3s ease-in-out infinite;
+}
+
+.core-icon {
+  margin-bottom: 2px;
+}
+
+.core-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--accent-teal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse-core {
+  0% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.2), inset 0 0 10px rgba(20, 184, 166, 0.2); }
+  50% { box-shadow: 0 0 50px rgba(20, 184, 166, 0.6), inset 0 0 20px rgba(20, 184, 166, 0.4); }
+  100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.2), inset 0 0 10px rgba(20, 184, 166, 0.2); }
+}
+
+.orbit-ring {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  animation: spin 24s linear infinite;
+  box-shadow: inset 0 0 40px rgba(255,255,255,0.02);
+}
+
+/* Pause animations on hover so tooltips can be read comfortably */
+.solar-system-wrap:hover .orbit-ring,
+.solar-system-wrap:hover .planet-content-0,
+.solar-system-wrap:hover .planet-content-1,
+.solar-system-wrap:hover .planet-content-2,
+.solar-system-wrap:hover .planet-content-3 {
+  animation-play-state: paused;
+}
+
+.orbit-planet {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  width: 60px; 
+  height: 60px;
+  z-index: 20;
+}
+
+/* Planet positioning wrappers (Radius = 130px) */
+.planet-wrap-0 { transform: rotate(0deg) translateX(130px); }
+.planet-wrap-1 { transform: rotate(90deg) translateX(130px); }
+.planet-wrap-2 { transform: rotate(180deg) translateX(130px); }
+.planet-wrap-3 { transform: rotate(270deg) translateX(130px); }
+
+/* Icons Counter-Rotation */
+.planet-content { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; position: relative; cursor: pointer; }
+.planet-content-0 { animation: counter-0 24s linear infinite; }
+.planet-content-1 { animation: counter-1 24s linear infinite; }
+.planet-content-2 { animation: counter-2 24s linear infinite; }
+.planet-content-3 { animation: counter-3 24s linear infinite; }
+
+.planet-icon-bg {
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(8px);
+}
+
+.planet-content:hover .planet-icon-bg {
+  transform: scale(1.35);
+  background: #ffffff;
+  box-shadow: 0 0 40px var(--accent-teal), 0 0 80px var(--accent-purple);
+  border-color: #ffffff;
+  z-index: 50;
+}
+
+.planet-content:hover .planet-icon-bg svg {
+  color: #050b14 !important; /* Extremely high contrast */
+  transform: scale(1.1);
+}
+
+.planet-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 65px;
+  transform: translateY(-50%) translateX(10px) scale(0.9);
+  background: #0f172a; /* Completely opaque dark blue instead of transparent glass */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1.2rem;
+  border-radius: 12px;
+  width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+}
+
+.planet-content:hover .planet-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.planet-title {
+  display: block;
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.planet-items {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes counter-0 { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes counter-1 { from { transform: rotate(-90deg); } to { transform: rotate(-450deg); } }
+@keyframes counter-2 { from { transform: rotate(-180deg); } to { transform: rotate(-540deg); } }
+@keyframes counter-3 { from { transform: rotate(-270deg); } to { transform: rotate(-630deg); } }
+
+/* Soft Skills Visual */
+.soft-skills-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.skill-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skill-progress-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-teal), var(--accent-purple));
+  border-radius: 4px;
+  width: 0%; /* animate to final width */
+  animation: fillProgress 1.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards;
+}
+
+@keyframes fillProgress {
+  from { transform: translateX(-100%); width: 100%; }
+  to { transform: translateX(0); width: inherit; }
+}
+
+/* LinkedIn Button */
+.linkedin-integration {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.linkedin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: rgba(10, 102, 194, 0.1);
+  border: 1px solid rgba(10, 102, 194, 0.3);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.linkedin-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.linkedin-btn:hover {
+  background: rgba(10, 102, 194, 0.4);
+  box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);
+  transform: translateY(-2px);
+}
+
+.linkedin-btn:hover::before {
+  left: 100%;
+}
+
+.resume-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  color: var(--accent-teal);
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-download-btn:hover {
+  background: var(--accent-teal);
+  color: #050b14;
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
+  transform: translateY(-2px);
+}
+
+.admin-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px dashed rgba(234, 179, 8, 0.5);
+  color: #eab308;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-edit-btn:hover {
+  background: rgba(234, 179, 8, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-about { grid-column: span 2; }
+  .bento-edu { grid-column: span 1; }
+  .bento-tech { grid-column: span 2; }
+  .bento-soft { grid-column: span 1; }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-about, .bento-edu, .bento-tech, .bento-soft {
+    grid-column: span 1;
+  }
+  .tech-orbit-grid {
+    grid-template-columns: 1fr;
+  }
+  .tech-stats {
+    flex-direction: column;
+  }
+  .bento-item {
+    padding: 1.5rem;
+  }
+  
+  /* Make sure tooltip is fully visible on mobile */
+  .solar-system-wrap {
+    height: 320px;
+    overflow: visible;
+  }
+  
+  .orbit-ring {
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Tooltip overrides for small screens avoiding cut-offs */
+  .planet-tooltip {
+    left: 50%;
+    transform: translateX(-50%) translateY(30px) scale(0.9);
+    width: 200px;
+    text-align: center;
+    background: #0f172a;
+    border: 1px solid #14b8a6;
+    z-index: 1000;
+  }
+  
+  .planet-content:active .planet-tooltip,
+  .planet-content:hover .planet-tooltip {
+    transform: translateX(-50%) translateY(35px) scale(1);
+  }
+  
+  /* Readjust planet wrappers for narrower ring */
+  .planet-wrap-0 { transform: rotate(0deg) translateX(100px); }
+  .planet-wrap-1 { transform: rotate(90deg) translateX(100px); }
+  .planet-wrap-2 { transform: rotate(180deg) translateX(100px); }
+  .planet-wrap-3 { transform: rotate(270deg) translateX(100px); }
+}

@@ -1,0 +1,213 @@
+.projects-accordion-section {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-color);
+}
+
+.accordion-header {
+  margin-bottom: 2rem;
+}
+
+.accordion-container {
+  display: flex;
+  height: 60vh; /* Extremely compact, guarantees no screen overflow */
+  min-height: 400px;
+  max-height: 600px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  gap: 4px;
+  background: var(--bg-alt);
+  padding: 4px;
+}
+
+.accordion-panel {
+  position: relative;
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+}
+
+.accordion-panel.active {
+  flex: 6;
+}
+
+.accordion-icon-wrap {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-teal);
+  transition: all 0.4s ease;
+  z-index: 5;
+}
+
+.accordion-panel.active .accordion-icon-wrap {
+  top: 2rem;
+  left: 2rem;
+  transform: translateX(0);
+  background: rgba(20, 184, 166, 0.15);
+}
+
+.accordion-vertical-title {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg);
+  transform-origin: left bottom;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  transition: opacity 0.3s ease;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.accordion-panel.active .accordion-vertical-title {
+  opacity: 0;
+}
+
+.accordion-content {
+  opacity: 0;
+  width: 100%;
+  padding: 2.5rem;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  pointer-events: none;
+}
+
+.accordion-panel.active .accordion-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.accordion-content-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  min-width: 300px;
+}
+
+.accordion-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+}
+
+.accordion-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  max-width: 450px;
+}
+
+.accordion-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 1.5rem;
+  width: 100%;
+}
+
+.accordion-tags {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.accordion-tags span {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-purple);
+  background: rgba(139, 92, 246, 0.15);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+}
+
+.accordion-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.accordion-links a {
+  color: #fff;
+  opacity: 0.6;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.accordion-links a:hover {
+  opacity: 1;
+  color: var(--accent-teal);
+}
+
+.admin-edit-action {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(234, 179, 8, 0.9);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.admin-edit-action:hover {
+  background: #facc15;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .accordion-container {
+    flex-direction: column;
+    height: 800px;
+  }
+  .accordion-panel.active {
+    flex: 4;
+  }
+  .accordion-icon-wrap {
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+  }
+  .accordion-vertical-title {
+    transform: translateY(-50%);
+    bottom: auto;
+    top: 50%;
+    left: 5rem;
+  }
+  .accordion-panel.active .accordion-icon-wrap {
+    top: 1rem;
+    transform: none;
+  }
+}
