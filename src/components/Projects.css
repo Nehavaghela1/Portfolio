@@ -190,7 +190,8 @@
 @media (max-width: 1024px) {
   .accordion-container {
     flex-direction: column;
-    height: 800px;
+    height: 700px;
+    max-height: none;
   }
   .accordion-panel.active {
     flex: 4;
@@ -209,5 +210,66 @@
   .accordion-panel.active .accordion-icon-wrap {
     top: 1rem;
     transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion-container {
+    flex-direction: row;
+    height: 480px;
+    min-height: 480px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 0 1rem;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  
+  .accordion-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for clean slider */
+  }
+
+  .accordion-panel,
+  .accordion-panel.active {
+    flex: 0 0 85%;
+    height: 100%;
+    scroll-snap-align: center;
+    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.95);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+
+  .accordion-icon-wrap {
+    top: 1.5rem !important;
+    left: 1.5rem !important;
+    transform: none !important;
+  }
+
+  .accordion-vertical-title {
+    display: none !important;
+  }
+
+  .accordion-content {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    padding: 1.5rem;
+  }
+
+  .accordion-title {
+    font-size: 1.5rem;
+  }
+
+  .accordion-desc {
+    font-size: 0.95rem;
+  }
+
+  .accordion-content-inner {
+    min-width: 0; /* Ensures it sizes purely within the 85% card */
   }
 }

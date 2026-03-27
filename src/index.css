@@ -1,14 +1,13 @@
-/* Core variables and resets */
 :root {
-  --bg-color: #050b14;
-  --bg-alt: #0a1122;
+  --bg-color: #0a0b1a; /* Deep violet-blue night sky */
+  --bg-alt: #131530;
   --text-primary: #ffffff;
-  --text-secondary: #f8fafc; /* Pure bright slate for maximum visibility */
-  --accent-teal: #f59e0b;   /* Instagram Amber */
-  --accent-purple: #f43f5e; /* Instagram Rose/Pink */
-  --accent-pink: #8b5cf6;   /* Instagram Violet */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-secondary: #e2e8f0;
+  --accent-teal: #00f2fe;   /* Electric Cyan */
+  --accent-purple: #ff0844; /* Neon Pink/Red */
+  --accent-pink: #9b51e0;   /* Bright Violet */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
   --font-main: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -18,8 +17,18 @@
   box-sizing: border-box;
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+#root, .app-container {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 body {
@@ -137,22 +146,27 @@ ul {
   border-radius: 50%;
   filter: blur(100px);
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.3; /* Increased opacity massively for vibrant neon look */
   pointer-events: none;
   animation: floatAmbient 20s infinite ease-in-out alternate;
 }
 
 .app-container::before {
-  background: radial-gradient(circle, var(--accent-teal) 0%, transparent 70%);
-  top: -10%;
+  background: radial-gradient(circle, var(--accent-teal) 0%, transparent 60%);
+  top: -20%;
   left: -10%;
 }
 
 .app-container::after {
-  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
-  bottom: -10%;
+  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 60%);
+  bottom: -20%;
   right: -10%;
   animation-delay: -10s;
+}
+
+/* Extra neon glowing element in the center */
+.app-container::before {
+  box-shadow: 50vw 50vh 150px 100px rgba(155, 81, 224, 0.15); /* Pink center glow */
 }
 
 @keyframes floatAmbient {

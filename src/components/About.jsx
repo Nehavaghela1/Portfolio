@@ -96,7 +96,7 @@ const About = () => {
                   
                   return (
                     <div key={i} className={`orbit-planet planet-wrap-${i}`}>
-                      <div className={`planet-content planet-content-${i}`}>
+                      <div className={`planet-content planet-content-${i}`} tabIndex="0">
                         <div className={`planet-icon-bg`}>
                           <TechIcon size={22} className={iconColorClass} />
                         </div>

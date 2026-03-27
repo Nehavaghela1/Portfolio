@@ -6,16 +6,44 @@ import './Contact.css';
 const Contact = () => {
   const ref = useScrollReveal();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState(''); // '', 'sending', 'success', 'error'
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:nehavghela347@gmail.com?subject=${subject}&body=${body}`;
+    setStatus('sending');
+    
+    // Web3Forms API Integration
+    // To make this work, sign up at web3forms.com and replace YOUR_ACCESS_KEY_HERE
+    const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          ...formData
+        })
+      });
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        console.error("Web3Forms Error:", result);
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -87,9 +115,11 @@ const Contact = () => {
               <textarea id="message" rows="5" value={formData.message} onChange={handleChange} placeholder="How can I help you?" required></textarea>
             </div>
             
-            <button type="submit" className="btn btn-primary submit-btn">
-              Send Message
+            <button type="submit" className="btn btn-primary submit-btn" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending...' : 'Send Message'}
             </button>
+            {status === 'success' && <p style={{ color: 'var(--accent-teal)', marginTop: '1rem', textAlign: 'center' }}>Message sent successfully!</p>}
+            {status === 'error' && <p style={{ color: '#ef4444', marginTop: '1rem', textAlign: 'center' }}>Something went wrong. Please try again or ensure your Access Key is set.</p>}
           </form>
         </div>
       </div>

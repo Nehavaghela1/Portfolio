@@ -81,6 +81,7 @@
   letter-spacing: -2px;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(0, 242, 254, 0.3), 0 0 80px rgba(139, 92, 246, 0.2);
 }
 
 .hero-description-modern {
@@ -136,5 +137,11 @@
 @media (max-width: 768px) {
   .hero-actions-modern {
     flex-direction: column;
+    width: 100%;
+  }
+  .modern-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
   }
 }
