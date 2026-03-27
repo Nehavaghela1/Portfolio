@@ -29,7 +29,7 @@ const Contact = () => {
     }
     const subject = `Portfolio Contact from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:nehavghela347@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:nehavaghela347@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -46,11 +46,11 @@ const Contact = () => {
             </p>
             
             <div className="contact-details">
-              <a href="mailto:nehavghela347@gmail.com" className="contact-item">
+              <a href="mailto:nehavaghela347@gmail.com" className="contact-item">
                 <div className="icon-box"><Mail /></div>
                 <div>
                   <h4>Email</h4>
-                  <p>nehavghela347@gmail.com</p>
+                  <p>nehavaghela347@gmail.com</p>
                 </div>
               </a>
               
