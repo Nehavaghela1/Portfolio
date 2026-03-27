@@ -12,38 +12,25 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('sending');
-    
-    // Web3Forms API Integration
-    // To make this work, sign up at web3forms.com and replace YOUR_ACCESS_KEY_HERE
-    const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
-    
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          ...formData
-        })
-      });
-      const result = await response.json();
-      if (result.success) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        console.error("Web3Forms Error:", result);
-        setStatus('error');
-      }
-    } catch (error) {
-      console.error("Submission Error:", error);
-      setStatus('error');
+  const handleWhatsApp = () => {
+    if (!formData.name || !formData.message) {
+      alert("Please fill in your name and message first.");
+      return;
     }
+    const text = `Hi Neha, I am ${formData.name}.\n\n${formData.message}\n\nMy Email: ${formData.email}`;
+    window.open(`https://wa.me/919313112449?text=${encodeURIComponent(text)}`, '_blank');
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleEmail = () => {
+    if (!formData.name || !formData.message) {
+      alert("Please fill in your name and message first.");
+      return;
+    }
+    const subject = `Portfolio Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    window.location.href = `mailto:nehavghela347@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
@@ -97,7 +84,7 @@ const Contact = () => {
             </div>
           </div>
           
-          <form className="contact-form glass-panel reveal reveal-delay-2" onSubmit={handleSubmit}>
+          <form className="contact-form glass-panel reveal reveal-delay-2" onSubmit={(e) => e.preventDefault()}>
             <h3>Send Me a Message</h3>
             
             <div className="form-group">
@@ -115,11 +102,14 @@ const Contact = () => {
               <textarea id="message" rows="5" value={formData.message} onChange={handleChange} placeholder="How can I help you?" required></textarea>
             </div>
             
-            <button type="submit" className="btn btn-primary submit-btn" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-            {status === 'success' && <p style={{ color: 'var(--accent-teal)', marginTop: '1rem', textAlign: 'center' }}>Message sent successfully!</p>}
-            {status === 'error' && <p style={{ color: '#ef4444', marginTop: '1rem', textAlign: 'center' }}>Something went wrong. Please try again or ensure your Access Key is set.</p>}
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexDirection: 'column' }}>
+              <button type="button" onClick={handleWhatsApp} className="btn submit-btn" style={{ background: '#25D366', color: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: '700', borderRadius: '8px' }}>
+                <Phone size={20} /> Send via WhatsApp
+              </button>
+              <button type="button" onClick={handleEmail} className="btn submit-btn" style={{ background: 'var(--accent-purple)', color: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: '700', borderRadius: '8px' }}>
+                <Mail size={20} /> Send via Email
+              </button>
+            </div>
           </form>
         </div>
       </div>
