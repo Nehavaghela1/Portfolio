@@ -110,16 +110,40 @@ const AdminEditorModal = ({ type, item, onClose }) => {
               return (
                 <div key={key} className="form-group">
                   <label>Background Image URL</label>
+                  
+                  <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                    <select 
+                      onChange={e => {
+                        if(e.target.value) setFormData({...formData, [key]: e.target.value});
+                      }}
+                      style={{ flex: 1, padding: '0.8rem', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                    >
+                      <option value="" style={{color: 'black'}}>-- Select Built-in Placeholder --</option>
+                      <option value="/images/projects/future_ai.png" style={{color: 'black'}}>AI / ML Placeholder</option>
+                      <option value="/images/projects/future_data.png" style={{color: 'black'}}>Data / Backend Placeholder</option>
+                      <option value="/images/projects/future_web.png" style={{color: 'black'}}>Web / UI Placeholder</option>
+                      <option value="/images/projects/future_mobile.png" style={{color: 'black'}}>Mobile / FinTech Placeholder</option>
+                    </select>
+                  </div>
+
                   <input 
                     type="text" 
                     value={formData[key] || ''} 
                     onChange={e => setFormData({...formData, [key]: e.target.value})}
-                    placeholder="/images/projects/future_ai.png"
+                    placeholder="Or type custom path (e.g. /images/projects/my_img.png)"
                     style={{ width: '100%', padding: '0.8rem', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', marginBottom: '8px' }}
                   />
-                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', lineHeight: '1.4' }}>
-                    <strong>🤖 AI Image Prompt Template:</strong><br/>
-                    "A sleek, modern, glassmorphism UI banner conceptualizing <strong>[Your Project Name/Desc]</strong>. Premium dark mode aesthetic with futuristic technological accents, glowing neon colored nodes and 3D UI elements. Abstract tech background, no text."
+                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', lineHeight: '1.5' }}>
+                    <strong style={{ color: '#0ea5e9' }}>🤖 Pro AI Image Prompts (Copy & Paste):</strong><br/>
+                    
+                    <span style={{color: '#facc15', fontWeight: 'bold'}}>1. For Data Science & AI:</span><br/>
+                    "A sleek, modern, glassmorphism UI banner conceptualizing <strong>[Your AI Project Name]</strong>. Premium dark mode aesthetic with glowing emerald and teal neon data lines, and futuristic neural network connections. No text."<br/><br/>
+                    
+                    <span style={{color: '#c084fc', fontWeight: 'bold'}}>2. For Web Apps & Visual Portfolios:</span><br/>
+                    "A sleek, modern, glassmorphism UI banner conceptualizing <strong>[Your Web Project Name]</strong>. Premium dark mode aesthetic with elegant neon purple and cyan floating UI elements and dynamic glass panels. No text."<br/><br/>
+                    
+                    <span style={{color: '#fb923c', fontWeight: 'bold'}}>3. For Analytics & Dashboards:</span><br/>
+                    "A sleek, modern, glassmorphism UI banner conceptualizing <strong>[Your Dashboard Project]</strong>. Premium dark mode aesthetic with glowing orange and blue isometric charts, abstract data pipelines, and a high-end corporate feel. No text."
                   </div>
                 </div>
               )
