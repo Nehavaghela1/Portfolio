@@ -36,7 +36,13 @@ const Projects = () => {
               <div 
                 key={project.id || index}
                 className={`accordion-panel ${isActive ? 'active' : ''}`}
-                style={{ background: project.bg || "rgba(10,15,30,0.95)", border: "1px solid rgba(255,255,255,0.08)", position: 'relative' }}
+                style={{ 
+                  background: project.image 
+                    ? `linear-gradient(to bottom, rgba(10,15,30,0.3), rgba(10,15,30,0.7)), url(${project.image}) center/cover no-repeat` 
+                    : (project.bg || "rgba(10,15,30,0.95)"), 
+                  border: "1px solid rgba(255,255,255,0.08)", 
+                  position: 'relative' 
+                }}
                 onMouseEnter={() => setActiveIdx(index)}
               >
                 {isAdmin && (

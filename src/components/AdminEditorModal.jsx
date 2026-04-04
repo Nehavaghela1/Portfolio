@@ -8,7 +8,7 @@ const AdminEditorModal = ({ type, item, onClose }) => {
   
   // Default templates for new items
   const defaultTemplates = {
-    projects: { title: '', short: '', iconCategory: 'Cpu', description: '', tags: [], github: '', live: '', bg: 'linear-gradient(135deg, #0f172a, #1e293b)' },
+    projects: { title: '', short: '', iconCategory: 'Cpu', description: '', tags: [], github: '', live: '', bg: 'linear-gradient(135deg, #0f172a, #1e293b)', image: '' },
     certifications: { title: '', issuer: '', link: '' },
     experience: { title: '', company: '', period: '', description: '' },
     techCategories: { title: '', items: '' } // For Skills
@@ -106,9 +106,30 @@ const AdminEditorModal = ({ type, item, onClose }) => {
               )
             }
 
+            if (key === 'image') {
+              return (
+                <div key={key} className="form-group">
+                  <label>Background Image URL</label>
+                  <input 
+                    type="text" 
+                    value={formData[key] || ''} 
+                    onChange={e => setFormData({...formData, [key]: e.target.value})}
+                    placeholder="/images/projects/future_ai.png"
+                    style={{ width: '100%', padding: '0.8rem', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', marginBottom: '8px' }}
+                  />
+                  <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', lineHeight: '1.4' }}>
+                    <strong>🤖 AI Image Prompt Template:</strong><br/>
+                    "A sleek, modern, glassmorphism UI banner conceptualizing <strong>[Your Project Name/Desc]</strong>. Premium dark mode aesthetic with futuristic technological accents, glowing neon colored nodes and 3D UI elements. Abstract tech background, no text."
+                  </div>
+                </div>
+              )
+            }
+
             return (
               <div key={key} className="form-group">
-                <label style={{ textTransform: 'capitalize' }}>{key}</label>
+                <label style={{ textTransform: 'capitalize' }}>
+                  {key === 'live' ? 'Live URL (Leave blank if none)' : key}
+                </label>
                 {key === 'description' ? (
                   <textarea 
                     value={formData[key] || ''} 

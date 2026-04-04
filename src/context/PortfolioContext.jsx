@@ -42,7 +42,8 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["Python", "Flask"],
         github: "https://github.com/Nehavaghela1/Google-search-chatbot",
         live: null,
-        bg: "linear-gradient(135deg, #0f172a, #1e293b)"
+        bg: "linear-gradient(135deg, #0f172a, #1e293b)",
+        image: "/images/projects/proj1.png"
       },
       {
         id: 'proj-2',
@@ -53,7 +54,8 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["Python", "NLP"],
         github: "https://github.com/Nehavaghela1/smart_recruitment_system",
         live: null,
-        bg: "linear-gradient(135deg, #1e1b4b, #312e81)"
+        bg: "linear-gradient(135deg, #1e1b4b, #312e81)",
+        image: "/images/projects/proj2.png"
       },
       {
         id: 'proj-3',
@@ -64,7 +66,8 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["OpenAI", "OCR"],
         github: "https://github.com/Nehavaghela1/AI-Powered-Chatbot-with-File-Processing",
         live: null,
-        bg: "linear-gradient(135deg, #022c22, #064e3b)"
+        bg: "linear-gradient(135deg, #022c22, #064e3b)",
+        image: "/images/projects/proj3.png"
       },
       {
         id: 'proj-4',
@@ -75,7 +78,8 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["Scikit", "SQL"],
         github: "https://github.com/Nehavaghela1",
         live: null,
-        bg: "linear-gradient(135deg, #3b0764, #581c87)"
+        bg: "linear-gradient(135deg, #3b0764, #581c87)",
+        image: "/images/projects/proj4.png"
       },
       {
         id: 'proj-5',
@@ -86,7 +90,8 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["Power BI", "DAX"],
         github: "#",
         live: "#",
-        bg: "linear-gradient(135deg, #4c1d95, #2e1065)"
+        bg: "linear-gradient(135deg, #4c1d95, #2e1065)",
+        image: "/images/projects/proj5.png"
       },
       {
         id: 'proj-6',
@@ -97,7 +102,20 @@ export const PortfolioProvider = ({ children }) => {
         tags: ["yfinance"],
         github: "https://github.com/Nehavaghela1/Stock-Dashboard-Visualization",
         live: "#",
-        bg: "linear-gradient(135deg, #082f49, #0c4a6e)"
+        bg: "linear-gradient(135deg, #082f49, #0c4a6e)",
+        image: "/images/projects/proj6.png"
+      },
+      {
+        id: 'proj-7',
+        title: "Interior Recommendation System",
+        short: "Interior Recsys",
+        iconCategory: "Database",
+        description: "Developed a content-based recommendation engine using TF-IDF and cosine similarity with custom weighted scoring (category, style, price, size)",
+        tags: ["Machine Learning", "TF-IDF"],
+        github: "https://github.com/Nehavaghela1/Furniture_Recommendation_system",
+        live: "https://interior-recommender.streamlit.app/",
+        bg: "linear-gradient(135deg, #065f46, #064e3b)",
+        image: "/images/projects/proj7.png"
       }
     ],
     experience: [
@@ -120,7 +138,28 @@ export const PortfolioProvider = ({ children }) => {
 
   const [data, setData] = useState(() => {
     const saved = localStorage.getItem('portfolioDataV3');
-    return saved ? JSON.parse(saved) : defaultData;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Merge any new default projects that aren't in localStorage yet
+      const existingIds = new Set((parsed.projects || []).map(p => p.id));
+      const missingProjects = defaultData.projects.filter(p => !existingIds.has(p.id));
+      if (missingProjects.length > 0) {
+        parsed.projects = [...(parsed.projects || []), ...missingProjects];
+      }
+      
+      // Inject missing images from default templates
+      if (parsed.projects) {
+        parsed.projects = parsed.projects.map(p => {
+          const defaultProj = defaultData.projects.find(dp => dp.id === p.id);
+          if (defaultProj && defaultProj.image && !p.image) {
+            return { ...p, image: defaultProj.image };
+          }
+          return p;
+        });
+      }
+      return parsed;
+    }
+    return defaultData;
   });
 
   useEffect(() => {
