@@ -104,10 +104,10 @@ const About = () => {
                     <div 
                       key={tech.id || i} 
                       className="orbit-planet"
-                      style={{ transform: `rotate(${angle}deg) translateX(var(--orbit-radius, 140px))` }}
+                      style={{ transform: `rotate(${angle}deg) translateX(var(--orbit-radius, 140px)) rotate(-${angle}deg)` }}
                     >
                       <div className="planet-counter-spin">
-                        <div className="planet-content" style={{ transform: `rotate(-${angle}deg)` }} tabIndex="0">
+                        <div className="planet-content" tabIndex="0">
                           <div className={`planet-icon-bg`}>
                             <TechIcon size={22} className={iconColorClass} />
                           </div>

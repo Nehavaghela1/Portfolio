@@ -22,7 +22,7 @@ const Experience = () => {
           <div className="experience-line"></div>
           
           {experiences.map((exp, index) => (
-            <div key={exp.id || index} style={{ position: 'relative', marginBottom: '2rem' }}>
+            <div key={exp.id || index} style={{ position: 'relative', marginBottom: '2rem', display: 'flex' }}>
               <div className="glass-panel experience-card">
                 {isAdmin && (
                   <button 
@@ -49,7 +49,7 @@ const Experience = () => {
                 </p>
                 
                 {exp.tags && exp.tags.length > 0 && (
-                  <div className="exp-tech" style={{ marginTop: '1rem' }}>
+                  <div className="exp-tech">
                     {exp.tags.map(t => <span key={t}>{t}</span>)}
                   </div>
                 )}
