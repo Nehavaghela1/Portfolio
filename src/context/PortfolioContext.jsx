@@ -34,6 +34,18 @@ export const PortfolioProvider = ({ children }) => {
     ],
     projects: [
       {
+        id: 'proj-health-genai',
+        title: "Health GenAI – RAG Chatbot",
+        short: "Health GenAI",
+        iconCategory: "MessageSquare",
+        description: "Built and deployed a RAG-based healthcare chatbot using Python, Ollama, embeddings, vector search, and FastAPI. Processed data from 9 organizations and chunked 147+ documents. Dockerized and deployed on Vercel.",
+        tags: ["Python", "Ollama", "RAG", "FastAPI"],
+        github: "https://github.com/Nehavaghela1/Health-Gennie",
+        live: "https://health-genrativeai.vercel.app/",
+        bg: "linear-gradient(135deg, #022c22, #064e3b)",
+        image: "/images/projects/future_ai.png"
+      },
+      {
         id: 'proj-1',
         title: "AI Search Chatbot",
         short: "Search AI",
@@ -120,6 +132,14 @@ export const PortfolioProvider = ({ children }) => {
     ],
     experience: [
       {
+        id: 'exp-podium',
+        title: "AI/ML Intern",
+        company: "Podium Square",
+        period: "Mar 2026 – May 2026",
+        description: "Developed an AI-powered 2D floor plan to 3D visualization system using Python and OpenCV for detecting walls, windows, and doors from architectural layouts. Built image processing pipelines and converted floor plan data into 3D GLB models for real-time visualization workflows. Created a furniture recommendation system based on user preferences.",
+        tags: ["Python", "OpenCV", "AI/ML", "3D Visualization"]
+      },
+      {
         id: 'exp-1',
         title: "Python Development Internship (Remote)",
         company: "Info tact Solutions",
@@ -129,10 +149,15 @@ export const PortfolioProvider = ({ children }) => {
       }
     ],
     techCategories: [
-      { id: 'tc-1', title: "AI", items: "Machine Learning, Deep Learning, NLP, RAG" },
-      { id: 'tc-2', title: "Dev", items: "Python, SQL, GitHub, Django, HTML, CSS" },
-      { id: 'tc-3', title: "Data", items: "Cleaning, ETL, Modeling, MySQL, PostgreSQL" },
-      { id: 'tc-4', title: "BI", items: "Power BI, DAX, Power Query, Tableau, MS Excel" },
+      { id: 'tc-new-1', title: "Programming", items: "Python, SQL" },
+      { id: 'tc-new-2', title: "AI / ML", items: "Machine Learning, Feature Engineering, Model Evaluation, Embeddings" },
+      { id: 'tc-new-3', title: "GenAI & NLP", items: "RAG, Tokenization, spaCy, NLTK, Transformers, Hugging Face" },
+      { id: 'tc-new-4', title: "Backend", items: "FastAPI, Docker, Vercel Deployment" },
+      { id: 'tc-new-5', title: "Databases", items: "MySQL, PostgreSQL, Vector Databases (FAISS, ChromaDB)" },
+      { id: 'tc-new-6', title: "Cloud", items: "AWS" },
+      { id: 'tc-new-7', title: "Vision", items: "OpenCV, Image Processing, Trimesh, 2D-to-3D Floorplan" },
+      { id: 'tc-new-8', title: "Data & BI", items: "Pandas, NumPy, Power BI, Excel" },
+      { id: 'tc-new-9', title: "Tools", items: "Git, GitHub, Ollama, VS Code" }
     ]
   };
 
@@ -144,7 +169,27 @@ export const PortfolioProvider = ({ children }) => {
       const existingIds = new Set((parsed.projects || []).map(p => p.id));
       const missingProjects = defaultData.projects.filter(p => !existingIds.has(p.id));
       if (missingProjects.length > 0) {
-        parsed.projects = [...(parsed.projects || []), ...missingProjects];
+        parsed.projects = [...missingProjects, ...(parsed.projects || [])];
+      }
+      
+      const existingExpIds = new Set((parsed.experience || []).map(e => e.id));
+      const missingExp = defaultData.experience.filter(e => !existingExpIds.has(e.id));
+      if (missingExp.length > 0) {
+        parsed.experience = [...missingExp, ...(parsed.experience || [])];
+      }
+
+      // Overwrite tech categories with the new set if they don't have the new IDs
+      const hasNewTech = (parsed.techCategories || []).some(t => t.id.startsWith('tc-new-'));
+      if (!hasNewTech) {
+        // Filter out old defaults, keep any custom ones they might have added
+        const customTech = (parsed.techCategories || []).filter(t => !t.id.startsWith('tc-'));
+        parsed.techCategories = [...defaultData.techCategories, ...customTech];
+      } else {
+        const existingTechIds = new Set((parsed.techCategories || []).map(t => t.id));
+        const missingTech = defaultData.techCategories.filter(t => !existingTechIds.has(t.id));
+        if (missingTech.length > 0) {
+          parsed.techCategories = [...(parsed.techCategories || []), ...missingTech];
+        }
       }
       
       // Inject missing images from default templates
