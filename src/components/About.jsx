@@ -90,27 +90,39 @@ const About = () => {
                 {techCategories.map((tech, i) => {
                   let TechIcon = Brain;
                   let iconColorClass = "accent-pink";
-                  if (tech.title === "Dev") { TechIcon = Terminal; iconColorClass = "accent-teal"; }
-                  if (tech.title === "Data") { TechIcon = Database; iconColorClass = "accent-purple"; }
-                  if (tech.title === "BI") { TechIcon = LineChart; iconColorClass = "accent-pink"; }
+                  const t = tech.title.toLowerCase();
+                  if (t.includes("dev") || t.includes("program")) { TechIcon = Terminal; iconColorClass = "accent-teal"; }
+                  if (t.includes("data") || t.includes("base")) { TechIcon = Database; iconColorClass = "accent-purple"; }
+                  if (t.includes("bi") || t.includes("cloud")) { TechIcon = LineChart; iconColorClass = "accent-teal"; }
+                  if (t.includes("vision")) { TechIcon = Sparkles; iconColorClass = "accent-purple"; }
+                  if (t.includes("backend")) { TechIcon = Cpu; iconColorClass = "accent-pink"; }
+                  if (t.includes("tool")) { TechIcon = Terminal; iconColorClass = "accent-teal"; }
+                  
+                  const angle = (360 / techCategories.length) * i;
                   
                   return (
-                    <div key={i} className={`orbit-planet planet-wrap-${i}`}>
-                      <div className={`planet-content planet-content-${i}`} tabIndex="0">
-                        <div className={`planet-icon-bg`}>
-                          <TechIcon size={22} className={iconColorClass} />
-                        </div>
-                        <div className="planet-tooltip">
-                          <strong className="planet-title">{tech.title}</strong>
-                          <p className="planet-items">{tech.items}</p>
-                          {isAdmin && (
-                            <button 
-                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setEditingSkill(tech); }}
-                              style={{ marginTop: '0.5rem', background: 'rgba(234,179,8,0.2)', color: '#facc15', border: '1px solid currentColor', borderRadius: '4px', padding: '2px 8px', fontSize: '0.7rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
-                            >
-                              <Edit size={10} /> Edit Category
-                            </button>
-                          )}
+                    <div 
+                      key={tech.id || i} 
+                      className="orbit-planet"
+                      style={{ transform: `rotate(${angle}deg) translateX(var(--orbit-radius, 140px))` }}
+                    >
+                      <div className="planet-counter-spin">
+                        <div className="planet-content" style={{ transform: `rotate(-${angle}deg)` }} tabIndex="0">
+                          <div className={`planet-icon-bg`}>
+                            <TechIcon size={22} className={iconColorClass} />
+                          </div>
+                          <div className="planet-tooltip">
+                            <strong className="planet-title">{tech.title}</strong>
+                            <p className="planet-items">{tech.items}</p>
+                            {isAdmin && (
+                              <button 
+                                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setEditingSkill(tech); }}
+                                style={{ marginTop: '0.5rem', background: 'rgba(234,179,8,0.2)', color: '#facc15', border: '1px solid currentColor', borderRadius: '4px', padding: '2px 8px', fontSize: '0.7rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                              >
+                                <Edit size={10} /> Edit Category
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -118,6 +130,17 @@ const About = () => {
                 })}
               </div>
             </div>
+            {isAdmin && (
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', position: 'relative', zIndex: 100 }}>
+                <button 
+                  className="admin-edit-btn" 
+                  onClick={() => setEditingSkill({ title: '', items: '' })}
+                  style={{ width: 'fit-content' }}
+                >
+                  <Sparkles size={14} /> Add Skill Category
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Card 4: Soft Skills (Spans 1 column) */}
