@@ -145,8 +145,16 @@
 }
 
 @media (max-width: 768px) {
+  .experience-timeline {
+    flex-direction: column;
+    gap: 0;
+    padding-top: 1rem;
+    overflow-x: hidden;
+  }
   .experience-card {
-    margin-left: 1rem;
+    min-width: 100%;
+    max-width: 100%;
+    margin-left: 0;
     padding: 1.5rem;
   }
   .experience-line {
@@ -157,5 +165,6 @@
   }
   .exp-header {
     flex-direction: column;
+    gap: 0.5rem;
   }
 }
