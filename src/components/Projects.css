@@ -135,6 +135,7 @@
 .accordion-tags {
   display: flex;
   gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .accordion-tags span {
@@ -259,6 +260,8 @@
     transform: none !important;
     pointer-events: auto !important;
     padding: 1.5rem;
+    max-height: 100%;
+    overflow-y: auto;
   }
 
   .accordion-title {
@@ -271,5 +274,11 @@
 
   .accordion-content-inner {
     min-width: 0; /* Ensures it sizes purely within the 85% card */
+  }
+
+  .accordion-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 }
