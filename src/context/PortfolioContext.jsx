@@ -13,7 +13,7 @@ export const PortfolioProvider = ({ children }) => {
   const defaultData = {
     themeColor: 'teal-purple',
     heroName: 'NEHA VAGHELA',
-    heroSubtitle: 'ASPIRING DATA & AI LEARNER',
+    heroSubtitle: 'AI/ML ENGINEER • PYTHON DEVELOPER • GENAI ENTHUSIAST',
     resumeLink: '#',
     certifications: [
       {
@@ -149,15 +149,12 @@ export const PortfolioProvider = ({ children }) => {
       }
     ],
     techCategories: [
-      { id: 'tc-new-1', title: "Programming", items: "Python, SQL" },
-      { id: 'tc-new-2', title: "AI / ML", items: "Machine Learning, Feature Engineering, Model Evaluation, Embeddings" },
-      { id: 'tc-new-3', title: "GenAI & NLP", items: "RAG, Tokenization, spaCy, NLTK, Transformers, Hugging Face" },
-      { id: 'tc-new-4', title: "Backend", items: "FastAPI, Docker, Vercel Deployment" },
-      { id: 'tc-new-5', title: "Databases", items: "MySQL, PostgreSQL, Vector Databases (FAISS, ChromaDB)" },
-      { id: 'tc-new-6', title: "Cloud", items: "AWS" },
-      { id: 'tc-new-7', title: "Vision", items: "OpenCV, Image Processing, Trimesh, 2D-to-3D Floorplan" },
-      { id: 'tc-new-8', title: "Data & BI", items: "Pandas, NumPy, Power BI, Excel" },
-      { id: 'tc-new-9', title: "Tools", items: "Git, GitHub, Ollama, VS Code" }
+      { id: 'tc-final-1', title: "Programming & Tools", items: "Python, SQL, Git, GitHub, VS Code" },
+      { id: 'tc-final-2', title: "AI & ML", items: "Machine Learning, Feature Engineering, OpenCV, Image Processing, Embeddings" },
+      { id: 'tc-final-3', title: "GenAI & NLP", items: "RAG, LangChain, LLMs, Transformers, Hugging Face, spaCy" },
+      { id: 'tc-final-4', title: "Data & Databases", items: "Pandas, NumPy, MySQL, PostgreSQL, Vector DBs (FAISS)" },
+      { id: 'tc-final-5', title: "Backend", items: "Django, FastAPI, Streamlit" },
+      { id: 'tc-final-6', title: "Cloud & Deploy", items: "AWS, Docker, Vercel, Render, Ollama" }
     ]
   };
 
@@ -179,10 +176,10 @@ export const PortfolioProvider = ({ children }) => {
       }
 
       // Overwrite tech categories with the new set if they don't have the new IDs
-      const hasNewTech = (parsed.techCategories || []).some(t => t.id.startsWith('tc-new-'));
+      const hasNewTech = (parsed.techCategories || []).some(t => t.id && t.id.startsWith('tc-final-'));
       if (!hasNewTech) {
         // Filter out old defaults, keep any custom ones they might have added
-        const customTech = (parsed.techCategories || []).filter(t => !t.id.startsWith('tc-'));
+        const customTech = (parsed.techCategories || []).filter(t => t.id && !t.id.startsWith('tc-'));
         parsed.techCategories = [...defaultData.techCategories, ...customTech];
       } else {
         const existingTechIds = new Set((parsed.techCategories || []).map(t => t.id));
