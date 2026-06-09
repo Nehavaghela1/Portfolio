@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="hero-content-modern reveal">
           <div className="modern-badge mb-2">
             <span className="pulse-dot"></span>
-            ASPIRING DATA & AI LEARNER
+            AI ENGINEER & PYTHON DEVELOPER
           </div>
 
           <h1 className="hero-title-modern">
@@ -21,8 +21,8 @@ const Hero = () => {
           </h1>
 
           <p className="hero-description-modern">
-            Passionate student exploring data science, machine learning, and web development.
-            Always eager to learn new technologies and build innovative projects.
+            AI/ML Developer specializing in Generative AI, RAG systems, and computer vision. 
+            Passionate about building practical, real-world AI solutions.
             Based in Ahmedabad, India.
           </p>
 
