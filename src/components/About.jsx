@@ -28,23 +28,24 @@ const About = () => {
               </h2>
             </div>
             <div className="about-content-visual">
-              <p className="bento-text">
-                I am an <strong className="highlight-text">aspiring tech enthusiast</strong> with a strong learning mindset, currently diving deep into the world of Data and AI.  
-                I am actively learning to build predictive models, explore Python development, and uncover actionable insights from raw data. 
-                I love taking on new challenges to expand my skillset.
+              <p className="bento-text" style={{ fontSize: '1rem' }}>
+                I am an <strong className="highlight-text" style={{ color: 'var(--text-primary)' }}>AI/ML Engineer and Python Developer</strong> with a deep enthusiasm for Generative AI. 
+                I have hands-on experience building innovative solutions using <strong style={{ color: 'var(--text-primary)' }}>RAG systems, FastAPI, computer vision, and machine learning</strong>. 
+                <br/><br/>
+                Having recently completed my M.Sc. IT in FinTech along with rewarding internships in AI development, I am incredibly passionate about bringing practical, impactful AI solutions to life and continuously exploring the frontiers of emerging technologies.
               </p>
               <div className="tech-stats">
                 <div className="stat-box">
-                  <span className="stat-num">AI/ML</span>
-                  <span className="stat-label">Learning</span>
+                  <span className="stat-num">6</span>
+                  <span className="stat-label">Months Internship</span>
                 </div>
                 <div className="stat-box">
-                  <span className="stat-num">Data</span>
-                  <span className="stat-label">Exploring</span>
+                  <span className="stat-num">6+</span>
+                  <span className="stat-label">AI Projects Shipped</span>
                 </div>
                 <div className="stat-box">
-                  <span className="stat-num">Web</span>
-                  <span className="stat-label">Building</span>
+                  <span className="stat-num">2026</span>
+                  <span className="stat-label">Graduate · Available</span>
                 </div>
               </div>
             </div>
@@ -60,15 +61,15 @@ const About = () => {
                <div className="edu-visual-card">
                  <div className="edu-icon-wrap"><BookOpen size={18} /></div>
                  <div className="edu-details">
-                   <strong>MSC IT (FinTech)</strong>
-                   <p>JG University <span className="edu-year">[2024-2026]</span></p>
+                   <strong>M.Sc IT (FinTech)</strong>
+                   <p>JG University <span className="edu-year">CGPA: 8.00</span></p>
                  </div>
                </div>
                <div className="edu-visual-card">
                  <div className="edu-icon-wrap"><Award size={18} /></div>
                  <div className="edu-details">
                    <strong>B.Com (Accounts)</strong>
-                   <p>Gujarat University <span className="edu-year">[2021-2024]</span></p>
+                   <p>Gujarat University <span className="edu-year">CGPA: 7.00</span></p>
                  </div>
                </div>
             </div>
@@ -150,7 +151,7 @@ const About = () => {
               <h3 className="bento-label">Core Strengths</h3>
             </div>
             <div className="soft-skills-visual">
-              {["Analytical Thinking", "Problem Solving", "Attention to Detail", "Learning Agility"].map((skill, index) => (
+              {["Good English Communication", "Fast Adaptability", "Product Mindset", "Prompt Engineering", "Team Collaborator"].map((skill, index) => (
                 <div key={index} className="skill-meter">
                   <div className="skill-meter-header">
                     <span className="skill-name">{skill}</span>
